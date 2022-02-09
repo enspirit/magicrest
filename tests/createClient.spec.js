@@ -4,7 +4,7 @@ import sinonChai from 'sinon-chai';
 chai.use(sinonChai);
 
 import axios from 'axios';
-import { createClient } from '../src';
+import { createClient, Request } from '../src';
 
 describe('createClient', () => {
 
@@ -45,6 +45,11 @@ describe('createClient', () => {
     });
 
     describe('.get()', () => {
+
+      it('returns a Request object', () => {
+        expect(client.get()).to.be.an.instanceof(Request);
+      });
+
       it('uses correct defaults', async () => {
         await client.get();
         expect(axiosClient).to.be.calledOnceWith({

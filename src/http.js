@@ -1,4 +1,4 @@
-import { createPromiseTrigger } from './promise';
+import Request from './request';
 
 export const bodylessRequest = (axiosClient, method, url, params) => {
   const options = {
@@ -8,7 +8,7 @@ export const bodylessRequest = (axiosClient, method, url, params) => {
   if (params) {
     options.params = params;
   }
-  return createPromiseTrigger(() => axiosClient(options));
+  return new Request(options, axiosClient);
 };
 
 export const bodyRequest = (axiosClient, method, url, data, params) => {
@@ -22,5 +22,5 @@ export const bodyRequest = (axiosClient, method, url, data, params) => {
   if (params) {
     options.params = params;
   }
-  return createPromiseTrigger(() => axiosClient(options));
+  return new Request(options, axiosClient);
 };
