@@ -25,12 +25,12 @@ await client.people(12).get();
 // GET http://localhost/people/12/hobbies
 await client.people(12).hobbies.get();
 
-// GET http://localhost/people/12/hobbies/24
-await client.people(12).hobbies(25).delete();
+// DELETE http://localhost/people/12/hobbies/24
+await client.people(12).hobbies(24).delete();
 
 // POST http://localhost/people/12/hobbies
 // with body: { name: 'Bass playing' }
-await client.people(12).hobbies(25).post({ name: 'Bass playing' });
+await client.people(12).hobbies.post({ name: 'Bass playing' });
 ```
 
 ## Close relationship with Promises
