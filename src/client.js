@@ -1,22 +1,52 @@
 import axios from 'axios';
 
+const bodylessRequest = (axiosClient, method, url, params) => {
+  const options = {
+    method,
+    url,
+  };
+  if (params) {
+    options.params = params;
+  }
+  return axiosClient(options);
+};
+
+const bodyRequest = (axiosClient, method, url, data, params) => {
+  const options = {
+    method,
+    url,
+  };
+  if (data) {
+    options.data = data;
+  }
+  if (params) {
+    options.params = params;
+  }
+  return axiosClient(options);
+};
+
 const createEndpoint = (baseUrl, axiosClient) => {
   const parametrize = (param) => {
     return createClient(`${baseUrl}/${param}`, axiosClient);
   };
   Object.assign(parametrize, {
-    get() {
-      return axiosClient({
-        method: 'GET',
-        url: baseUrl,
-      });
+    get(queryParams) {
+      return bodylessRequest(axiosClient, 'GET', baseUrl, queryParams);
     },
-    post(data) {
-      return axiosClient({
-        method: 'POST',
-        url: baseUrl,
-        data,
-      });
+    options(queryParams) {
+      return bodylessRequest(axiosClient, 'GET', baseUrl, queryParams);
+    },
+    delete(queryParams) {
+      return bodylessRequest(axiosClient, 'DELETE', baseUrl, queryParams);
+    },
+    post(data, queryParams) {
+      return bodyRequest(axiosClient, 'POST', baseUrl, data, queryParams);
+    },
+    put(data, queryParams) {
+      return bodyRequest(axiosClient, 'PUT', baseUrl, data, queryParams);
+    },
+    patch(data, queryParams) {
+      return bodyRequest(axiosClient, 'PATCH', baseUrl, data, queryParams);
     },
   });
   return parametrize;
