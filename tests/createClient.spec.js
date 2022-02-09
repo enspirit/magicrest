@@ -45,23 +45,64 @@ describe('createClient', () => {
     });
 
     describe('.get()', () => {
-      it('uses axios properly', () => {
+      it('uses correct defaults', () => {
         client.get();
         expect(axiosClient).to.be.calledOnceWith({
           method: 'GET',
           url: '/',
         });
       });
+
+      it('uses the first argument as query params', () => {
+        client.get({ foo: 'bar' });
+        expect(axiosClient).to.be.calledOnceWith({
+          method: 'GET',
+          url: '/',
+          params: {
+            foo: 'bar',
+          },
+        });
+      });
     });
 
     describe('.post()', () => {
-      it('uses axios properly', () => {
+      it('uses correct defaults', () => {
+        client.post();
+        expect(axiosClient).to.be.calledOnceWith({
+          method: 'POST',
+          url: '/',
+        });
+      });
+      it('uses the first argument as body payload', () => {
         client.post({ foo: 'bar' });
         expect(axiosClient).to.be.calledOnceWith({
           method: 'POST',
           url: '/',
           data: {
             foo: 'bar',
+          },
+        });
+      });
+      it('uses the second argument as query params', () => {
+        client.post(null, { foo: 'bar' });
+        expect(axiosClient).to.be.calledOnceWith({
+          method: 'POST',
+          url: '/',
+          params: {
+            foo: 'bar',
+          },
+        });
+      });
+      it('can use both args properly', () => {
+        client.post({ some: 'data' }, { foo: 'bar' });
+        expect(axiosClient).to.be.calledOnceWith({
+          method: 'POST',
+          url: '/',
+          params: {
+            foo: 'bar',
+          },
+          data: {
+            some: 'data',
           },
         });
       });
