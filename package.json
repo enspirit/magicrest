@@ -1,5 +1,5 @@
 {
-  "name": "magicrest",
+  "name": "@enspirit/magicrest",
   "version": "0.0.1",
   "description": "Super easy, magical and universal REST api client on top of axios",
   "main": "dist/magicrest.js",
@@ -15,7 +15,7 @@
   "dependencies": {
     "axios": "^0.25.0"
   },
-  "author": "",
+  "author": "Louis Lambeau <louislambeau@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@enspirit/eslint-config-node": "^0.1.4",
