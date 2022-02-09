@@ -57,15 +57,17 @@ const createClient = (baseUrl, axiosClient) => {
     axiosClient = axios.create({
       baseURL: baseUrl,
     });
-    baseUrl = '';
+    baseUrl = null;
   }
-  const endpoint = createEndpoint(baseUrl, axiosClient);
+  const endpointUrl = baseUrl ? baseUrl : '/';
+  const endpoint = createEndpoint(endpointUrl, axiosClient);
   return new Proxy(endpoint, {
     get(target, key) {
       if (target[key]) {
         return target[key];
       }
-      return createClient(`${baseUrl}/${key}`, axiosClient);
+      const subUrl = baseUrl ? `${baseUrl}/${key}` : `/${key}`;
+      return createClient(subUrl, axiosClient);
     },
   });
 };

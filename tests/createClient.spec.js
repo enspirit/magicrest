@@ -49,7 +49,7 @@ describe('createClient', () => {
         client.get();
         expect(axiosClient).to.be.calledOnceWith({
           method: 'GET',
-          url: '',
+          url: '/',
         });
       });
     });
@@ -59,7 +59,7 @@ describe('createClient', () => {
         client.post({ foo: 'bar' });
         expect(axiosClient).to.be.calledOnceWith({
           method: 'POST',
-          url: '',
+          url: '/',
           data: {
             foo: 'bar',
           },
