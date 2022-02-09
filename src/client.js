@@ -1,29 +1,5 @@
 import axios from 'axios';
-
-const bodylessRequest = (axiosClient, method, url, params) => {
-  const options = {
-    method,
-    url,
-  };
-  if (params) {
-    options.params = params;
-  }
-  return axiosClient(options);
-};
-
-const bodyRequest = (axiosClient, method, url, data, params) => {
-  const options = {
-    method,
-    url,
-  };
-  if (data) {
-    options.data = data;
-  }
-  if (params) {
-    options.params = params;
-  }
-  return axiosClient(options);
-};
+import { bodylessRequest, bodyRequest } from './http';
 
 const createEndpoint = (baseUrl, axiosClient) => {
   const parametrize = (param) => {
