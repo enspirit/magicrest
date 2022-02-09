@@ -11,24 +11,35 @@ import { createClient } from '@enspirit/magicrest';
 const client = createClient('http://localhost');
 
 // GET http://localhost/
-client.get();
+await client.get();
 
 // GET http://localhost/people
-client.people.get();
+await client.people.get();
 
 // GET http://localhost/people?filter=value
-client.people.get({ filter: 'value' });
+await client.people.get({ filter: 'value' });
 
 // GET http://localhost/people/12
-client.people(12).get();
+await client.people(12).get();
 
 // GET http://localhost/people/12/hobbies
-client.people(12).hobbies.get();
+await client.people(12).hobbies.get();
 
 // GET http://localhost/people/12/hobbies/24
-client.people(12).hobbies(25).delete();
+await client.people(12).hobbies(25).delete();
 
 // POST http://localhost/people/12/hobbies
 // with body: { name: 'Bass playing' }
-client.people(12).hobbies(25).post({ name: 'Bass playing' });
+await client.people(12).hobbies(25).post({ name: 'Bass playing' });
 ```
+
+## Close relationship with Promises
+
+It is important to know that magicrest only triggers HTTP request when the [Promise API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) is being used.
+
+This means that http request will only be triggered when one of the following method is being called on magicrest's returned objects:
+
+* `then()`
+* `catch()`
+* `finally()`
+
