@@ -31,6 +31,18 @@ await client.people(12).hobbies(24).delete();
 // POST http://localhost/people/12/hobbies
 // with body: { name: 'Bass playing' }
 await client.people(12).hobbies.post({ name: 'Bass playing' });
+
+// You can create clients with defaults
+const authdApi = client.withDefaults({ headers: { Authorization: 'Bearer some-token' }});
+await authdApi.my.profile.get();
+
+// Subclients deep merge their settings
+const authdApiWithMoreHeaders = client.withDefaults({
+  headers: {
+    Accept: 'application/xml'
+  }
+});
+await authdApiWithMoreHeaders.finance.reports.year(2022).get();
 ```
 
 ## Close relationship with Promises

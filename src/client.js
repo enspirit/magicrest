@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { bodylessRequest, bodyRequest } from './http';
+import merge from 'lodash.merge';
 
 const createEndpoint = (baseUrl, axiosClient) => {
   const parametrize = (param) => {
@@ -23,6 +24,10 @@ const createEndpoint = (baseUrl, axiosClient) => {
     },
     patch(data, queryParams) {
       return bodyRequest(axiosClient, 'PATCH', baseUrl, data, queryParams);
+    },
+    withDefaults(defaults) {
+      const client = axios.create(merge({}, axiosClient.defaults, defaults));
+      return createClient(baseUrl, client);
     },
   });
   return parametrize;

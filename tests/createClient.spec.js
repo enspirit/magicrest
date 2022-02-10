@@ -133,5 +133,22 @@ describe('createClient', () => {
       });
     });
 
+    describe('#withDefaults', () => {
+      it('factors new clients that use the new defaults', async () => {
+        axios.create.resetHistory();
+        const authenticatedClient = client.withDefaults({
+          headers: {
+            'Authorization': 'Bearer some-token',
+          },
+        });
+        expect(authenticatedClient).to.not.equal(client);
+        expect(axios.create).to.be.calledOnceWith({
+          headers: {
+            'Authorization': 'Bearer some-token',
+          },
+        });
+      });
+    });
+
   });
 });

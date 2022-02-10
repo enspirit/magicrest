@@ -13,26 +13,28 @@
     "test": "mocha --require @babel/register --require @babel/polyfill --recursive tests"
   },
   "dependencies": {
-    "axios": "^0.25.0"
+    "axios": "^0.25.0",
+    "lodash.merge": "^4.6.2"
   },
   "author": "Louis Lambeau <louislambeau@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "@enspirit/eslint-config-node": "^0.1.4",
-    "eslint": "^7.32.0",
-    "lodash": "^4.17.21",
-    "webpack": "^5.68.0",
-    "webpack-cli": "^4.9.2",
-    "mocha": "^8.2.3",
-    "chai": "^3.5.0",
-    "chai-as-promised": "^7.1.1",
-    "sinon": "^13.0.0",
-    "sinon-chai": "^3.7.0",
     "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.0",
     "@babel/plugin-transform-runtime": "^7.16.10",
     "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.16.4",
-    "@babel/register": "^7.16.0"
+    "@babel/register": "^7.16.0",
+    "@enspirit/eslint-config-node": "^0.1.4",
+    "babel-node": "0.0.1-security",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^7.1.1",
+    "eslint": "^7.32.0",
+    "lodash": "^4.17.21",
+    "mocha": "^8.2.3",
+    "sinon": "^13.0.0",
+    "sinon-chai": "^3.7.0",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2"
   }
 }

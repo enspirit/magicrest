@@ -12,11 +12,11 @@ module.exports = {
     },
   },
   externals: {
-    axios: {
-      commonjs: 'axios',
-      commonjs2: 'axios',
-      amd: 'axios',
-      root: '_',
-    },
+    // axios: {
+    //   commonjs: 'axios',
+    //   commonjs2: 'axios',
+    //   amd: 'axios',
+    //   root: '_',
+    // },
   },
 };
