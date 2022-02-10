@@ -37,7 +37,7 @@ const authdApi = client.withDefaults({ headers: { Authorization: 'Bearer some-to
 await authdApi.my.profile.get();
 
 // Subclients deep merge their settings
-const authdApiWithMoreHeaders = client.withDefaults({
+const authdApiWithMoreHeaders = authdApi.withDefaults({
   headers: {
     Accept: 'application/xml'
   }
