@@ -1,7 +1,9 @@
 export const createPromiseTrigger = (func) => {
   let _promise = null;
   const getPromise = () => {
-    _promise ||= func();
+    if (!_promise) {
+      _promise = func();
+    }
     return _promise;
   };
   return {
