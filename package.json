@@ -1,6 +1,6 @@
 {
   "name": "@enspirit/magicrest",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Super easy, magical and universal REST api client on top of axios",
   "main": "dist/magicrest.js",
   "module": "src/index.js",
