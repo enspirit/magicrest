@@ -20,7 +20,9 @@ export default class Request extends PromiseTriggered {
   }
 
   get promise() {
-    this.#promise ||= this.axios(this.options);
+    if (!this.#promise) {
+      this.#promise = this.axios(this.options);
+    }
     return this.#promise;
   }
 
@@ -30,7 +32,9 @@ export default class Request extends PromiseTriggered {
   }
 
   withHeaders(headers = {}) {
-    this.#options.headers ||= {};
+    if (!this.#options.headers) {
+      this.#options.headers = {};
+    }
     Object.assign(this.#options.headers, {
       ...headers,
     });
