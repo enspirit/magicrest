@@ -27,7 +27,7 @@ const createEndpoint = (baseUrl, axiosClient) => {
     },
     withDefaults(defaults) {
       const client = axios.create(merge({}, axiosClient.defaults, defaults));
-      return createClient(baseUrl, client);
+      return createClient(axiosClient.defaults.baseUrl, client);
     },
   });
   return parametrize;

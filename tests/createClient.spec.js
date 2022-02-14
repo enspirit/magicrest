@@ -36,6 +36,7 @@ describe('createClient', () => {
     let client;
     beforeEach(() => {
       axiosClient = sinon.stub().resolves({ data: { ok: true } });
+      axiosClient.defaults = { baseUrl: 'http://localhost' };
       axios.create = sinon.stub(axios, 'create').returns(axiosClient);
       client = createClient('http://localhost');
     });
@@ -143,10 +144,17 @@ describe('createClient', () => {
         });
         expect(authenticatedClient).to.not.equal(client);
         expect(axios.create).to.be.calledOnceWith({
+          baseUrl: 'http://localhost',
           headers: {
             'Authorization': 'Bearer some-token',
           },
         });
+        await authenticatedClient.test.get();
+        expect(axiosClient).to.be.calledOnceWith({
+          method: 'GET',
+          url: 'http://localhost/test',
+        });
+
       });
     });
 
