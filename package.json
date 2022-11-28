@@ -13,7 +13,7 @@
     "test": "mocha --require @babel/register --require @babel/polyfill --recursive tests"
   },
   "dependencies": {
-    "axios": "^0.25.0",
+    "axios": "^1.2.0",
     "lodash.merge": "^4.6.2"
   },
   "author": "Louis Lambeau <louislambeau@gmail.com>",
